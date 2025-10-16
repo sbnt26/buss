@@ -1,0 +1,50 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Next.js
+.next
+out
+build
+dist
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+.DS_Store
+*.pem
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Documentation
+DOCS
+*.md
+!README.md
+
+# CI/CD
+.github
+
+# Logs
+logs
+*.log
+
+# Uploads (will be mounted as volume)
+uploads
+
+
+
