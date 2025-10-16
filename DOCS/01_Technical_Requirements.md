@@ -1,4 +1,4 @@
-# Technical Requirements — WhatsApp Invoicer MVP
+# Technical Requirements — BussApp MVP
 **Date:** 2025-10-15
 
 ## Goals

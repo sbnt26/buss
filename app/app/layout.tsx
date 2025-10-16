@@ -7,7 +7,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
-                <span className="text-xl font-bold text-blue-600">InvoicerApp</span>
+              <span className="text-xl font-bold text-emerald-600">BussApp</span>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <a
@@ -54,4 +54,3 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-

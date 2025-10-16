@@ -1,4 +1,4 @@
-# WhatsApp Invoicer MVP
+# BussApp
 
 Komplexní self-hosted fakturační systém s WhatsApp chatbotem a webovým CRM.
 
@@ -200,4 +200,3 @@ Proprietary - Internal use only
 - ⏳ Week 4: WhatsApp Webhook & FSM (vyžaduje Meta Business setup)
 - ⏳ Week 5: Web CRM Interface
 - ⏳ Week 6: Testing & Deployment
-

@@ -2,7 +2,7 @@
 **Date:** 2025-10-15
 
 ## Overview
-Postgres 16 relational schema for WhatsApp Invoicer MVP. All tables use `id` as bigserial primary key unless specified otherwise.
+Postgres 16 relational schema for BussApp MVP. All tables use `id` as bigserial primary key unless specified otherwise.
 
 ## Tables
 

@@ -300,7 +300,7 @@ export default function ClientDetailPage() {
             onChange={(e) => setClient({ ...client, notes: e.target.value })}
             disabled={!editing}
             rows={4}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:text-gray-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:bg-gray-50 disabled:text-gray-500"
           />
         </div>
 

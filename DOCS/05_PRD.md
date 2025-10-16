@@ -1,4 +1,4 @@
-# Product Requirements Document — WhatsApp Invoicer MVP
+# Product Requirements Document — BussApp MVP
 **Date:** 2025-10-15
 
 ## Problem

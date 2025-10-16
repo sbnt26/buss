@@ -11,10 +11,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
     
     const variants = {
-      primary: 'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-600',
-      secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus-visible:ring-gray-400',
+      primary: 'bg-emerald-600 text-white hover:bg-emerald-700 focus-visible:ring-emerald-600',
+      secondary: 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200 focus-visible:ring-emerald-400',
       destructive: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600',
-      outline: 'border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 focus-visible:ring-gray-400',
+      outline: 'border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-700 focus-visible:ring-emerald-400',
     };
 
     const sizes = {
@@ -45,4 +45,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export { Button };
-

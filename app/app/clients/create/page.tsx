@@ -91,7 +91,7 @@ export default function CreateClientPage() {
               <input
                 type="text"
                 placeholder="Název firmy nebo jméno"
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                   errors.name ? 'border-red-300' : 'border-gray-300'
                 }`}
                 {...register('name')}
@@ -109,7 +109,7 @@ export default function CreateClientPage() {
                 <input
                   type="email"
                   placeholder="info@firma.cz"
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                     errors.email ? 'border-red-300' : 'border-gray-300'
                   }`}
                   {...register('email')}
@@ -125,7 +125,7 @@ export default function CreateClientPage() {
                 <input
                   type="tel"
                   placeholder="+420 123 456 789"
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                     errors.phone ? 'border-red-300' : 'border-gray-300'
                   }`}
                   {...register('phone')}
@@ -145,7 +145,7 @@ export default function CreateClientPage() {
                   type="text"
                   placeholder="12345678"
                   maxLength={8}
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                     errors.ic ? 'border-red-300' : 'border-gray-300'
                   }`}
                   {...register('ic')}
@@ -161,7 +161,7 @@ export default function CreateClientPage() {
                 <input
                   type="text"
                   placeholder="CZ12345678"
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                     errors.dic ? 'border-red-300' : 'border-gray-300'
                   }`}
                   {...register('dic')}
@@ -185,7 +185,7 @@ export default function CreateClientPage() {
               <input
                 type="text"
                 placeholder="Hlavní 123"
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                   errors.street ? 'border-red-300' : 'border-gray-300'
                 }`}
                 {...register('street')}
@@ -203,7 +203,7 @@ export default function CreateClientPage() {
                 <input
                   type="text"
                   placeholder="Praha"
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                     errors.city ? 'border-red-300' : 'border-gray-300'
                   }`}
                   {...register('city')}
@@ -220,7 +220,7 @@ export default function CreateClientPage() {
                   type="text"
                   placeholder="11000"
                   maxLength={6}
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                     errors.postal_code ? 'border-red-300' : 'border-gray-300'
                   }`}
                   {...register('postal_code')}
@@ -238,7 +238,7 @@ export default function CreateClientPage() {
               <input
                 type="text"
                 placeholder="Česká republika"
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
                   errors.country ? 'border-red-300' : 'border-gray-300'
                 }`}
                 {...register('country')}
@@ -254,7 +254,7 @@ export default function CreateClientPage() {
         <div className="bg-white shadow rounded-lg p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Poznámka</h2>
           <textarea
-            className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+            className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${
               errors.note ? 'border-red-300' : 'border-gray-300'
             }`}
             rows={4}
@@ -278,7 +278,7 @@ export default function CreateClientPage() {
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50"
           >
             {loading ? 'Ukládání...' : 'Vytvořit klienta'}
           </button>

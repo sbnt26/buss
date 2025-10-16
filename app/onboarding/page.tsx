@@ -20,6 +20,7 @@ export default function OnboardingPage() {
     handleSubmit,
     watch,
     trigger,
+    getValues,
     formState: { errors },
   } = useForm<OnboardingInput>({
     resolver: zodResolver(OnboardingSchema),
@@ -40,10 +41,35 @@ export default function OnboardingPage() {
       setIsLoading(true);
       setError('');
 
+      const safeDefaultVatRate = data.isVatPayer
+        ? Number.isFinite(data.defaultVatRate)
+          ? data.defaultVatRate!
+          : 21
+        : 0;
+      const safeNumberingStart = Number.isFinite(data.invoiceNumberingStart)
+        ? data.invoiceNumberingStart!
+        : 1;
+
+      const payload: OnboardingInput = {
+        ...data,
+        addressStreet: data.addressStreet?.trim() || '',
+        addressCity: data.addressCity?.trim() || '',
+        addressZip: data.addressZip?.trim() || '',
+        addressCountry: (data.addressCountry || 'CZ').trim().toUpperCase() as OnboardingInput['addressCountry'],
+        bankAccount: data.bankAccount?.trim() || '',
+        iban: data.iban?.trim().toUpperCase() || '',
+        bankName: data.bankName?.trim() || '',
+        dic: data.dic?.trim() || '',
+        defaultVatRate: safeDefaultVatRate,
+        invoicePrefix: data.invoicePrefix?.trim().toUpperCase() || '',
+        invoiceNumberingStart: safeNumberingStart,
+        defaultCurrency: (data.defaultCurrency || 'CZK').trim().toUpperCase() as OnboardingInput['defaultCurrency'],
+      };
+
       const response = await fetch('/api/organization', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
@@ -53,8 +79,7 @@ export default function OnboardingPage() {
       }
 
       // Redirect to dashboard
-      router.push('/app');
-      router.refresh();
+      router.replace('/app');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Došlo k chybě');
     } finally {
@@ -65,7 +90,7 @@ export default function OnboardingPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
       <div className="max-w-2xl w-full">
-        <div className="bg-background rounded-lg shadow-lg p-8">
+        <div className="bg-background rounded-lg shadow-lg p-8" role="form">
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">Nastavení organizace</h1>
             <p className="text-muted-foreground">
@@ -169,7 +194,12 @@ export default function OnboardingPage() {
                   </Button>
                   <Button 
                     type="button" 
-                    onClick={() => setStep(3)} 
+                    onClick={async () => {
+                      const isValid = await trigger(['bankAccount', 'iban', 'bankName']);
+                      if (isValid) {
+                        setStep(3);
+                      }
+                    }} 
                     className="flex-1"
                   >
                     Pokračovat
@@ -187,6 +217,7 @@ export default function OnboardingPage() {
                     <input
                       type="checkbox"
                       className="w-4 h-4 rounded border-gray-300"
+                      aria-label="Jsem plátce DPH"
                       {...register('isVatPayer')}
                     />
                     <span className="text-sm">Jsem plátce DPH</span>

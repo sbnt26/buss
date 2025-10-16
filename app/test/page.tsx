@@ -9,7 +9,7 @@ export default function TestPage() {
         <div className="flex gap-4 justify-center">
           <a
             href="/"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:opacity-90"
+            className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:opacity-90"
           >
             Domů
           </a>

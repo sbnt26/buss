@@ -2,7 +2,7 @@
 **Date:** 2025-10-15
 
 ## Overview
-Step-by-step guide to deploy WhatsApp Invoicer MVP on a VPS (Ubuntu 22.04+) using Docker Compose with Caddy for HTTPS.
+Step-by-step guide to deploy BussApp MVP on a VPS (Ubuntu 22.04+) using Docker Compose with Caddy for HTTPS.
 
 ## Prerequisites
 

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSessionFromRequest } from '@/lib/auth';
 import { query } from '@/lib/db';
-import { OnboardingSchema } from '@/lib/schemas/auth';
+import { OrganizationUpdateSchema } from '@/lib/schemas/organization';
 
 export async function GET(request: Request) {
   try {
@@ -102,7 +102,7 @@ export async function PATCH(request: Request) {
     const body = await request.json();
 
     // Validate input
-    const validation = OnboardingSchema.safeParse(body);
+    const validation = OrganizationUpdateSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
         { error: 'Validation error', details: validation.error.errors },
@@ -149,19 +149,19 @@ export async function PATCH(request: Request) {
          invoice_prefix as "invoicePrefix",
          invoice_numbering_start as "invoiceNumberingStart"`,
       [
-        data.addressStreet,
-        data.addressCity,
-        data.addressZip,
-        data.addressCountry,
-        data.bankAccount || null,
-        data.iban || null,
-        data.bankName || null,
-        data.dic || null,
+        data.addressStreet.trim(),
+        data.addressCity.trim(),
+        data.addressZip.trim(),
+        data.addressCountry.trim(),
+        data.bankAccount?.trim() || null,
+        data.iban?.trim() || null,
+        data.bankName?.trim() || null,
+        data.dic?.trim() || null,
         data.isVatPayer,
         data.defaultVatRate,
-        data.invoicePrefix,
+        data.invoicePrefix.trim(),
         data.invoiceNumberingStart,
-        data.defaultCurrency,
+        data.defaultCurrency.trim().toUpperCase(),
         session.organizationId,
       ]
     );

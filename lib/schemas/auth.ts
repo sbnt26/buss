@@ -34,11 +34,11 @@ export type LoginInput = z.infer<typeof LoginSchema>;
  * Onboarding schema (extended company details)
  */
 export const OnboardingSchema = z.object({
-  name: z.string().min(1, 'Název je povinný'),
+  name: z.string().min(1, 'Název je povinný').optional(),
   ico: z
     .string()
-    .min(1, 'IČO je povinné')
-    .regex(/^\d{8}$/, 'IČO musí obsahovat 8 číslic'),
+    .regex(/^[0-9]{8}$/, 'IČO musí obsahovat 8 číslic')
+    .optional(),
   // Company details
   addressStreet: z.string().min(1, 'Ulice je povinná'),
   addressCity: z.string().min(1, 'Město je povinné'),

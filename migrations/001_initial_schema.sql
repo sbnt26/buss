@@ -1,4 +1,4 @@
--- WhatsApp Invoicer - Initial Database Schema
+-- BussApp - Initial Database Schema
 -- Date: 2025-10-15
 
 -- Organizations table (must be created first due to foreign keys)

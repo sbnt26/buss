@@ -2,7 +2,7 @@
 **Date:** 2025-10-15
 
 ## Overview
-Complete list of environment variables required for WhatsApp Invoicer MVP. Use `.env.local` for development and secure secrets management (e.g., Docker secrets, Vault) for production.
+Complete list of environment variables required for BussApp MVP. Use `.env.local` for development and secure secrets management (e.g., Docker secrets, Vault) for production.
 
 ## Required Variables
 

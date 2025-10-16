@@ -2,7 +2,7 @@
 **Date:** 2025-10-15
 
 ## Overview
-RESTful API specification for WhatsApp Invoicer MVP. All authenticated endpoints require session cookie or JWT token.
+RESTful API specification for BussApp MVP. All authenticated endpoints require session cookie or JWT token.
 
 ## Authentication
 - **Session:** Cookie-based (httpOnly, secure, sameSite=lax)

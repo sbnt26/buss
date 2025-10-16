@@ -31,7 +31,7 @@ export default function DashboardPage() {
   async function fetchDashboardData() {
     try {
       // Fetch recent invoices
-      const res = await fetch('/api/invoices?limit=5');
+      const res = await fetch('/api/invoices?limit=3');
       const data = await res.json();
 
       if (res.ok) {
@@ -108,7 +108,7 @@ export default function DashboardPage() {
         </div>
         <div className="bg-white rounded-lg shadow p-6">
           <p className="text-sm font-medium text-gray-600">Odesláno</p>
-          <p className="mt-2 text-3xl font-bold text-blue-600">
+          <p className="mt-2 text-3xl font-bold text-emerald-600">
             {stats?.sentInvoices || 0}
           </p>
         </div>
@@ -164,7 +164,7 @@ export default function DashboardPage() {
                   </div>
                   <Link
                     href={`/app/invoices/${invoice.id}`}
-                    className="ml-4 text-blue-600 hover:text-blue-900 text-sm font-medium"
+                    className="ml-4 text-emerald-600 hover:text-emerald-900 text-sm font-medium"
                   >
                     Detail →
                   </Link>
@@ -176,7 +176,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-8 bg-blue-50 rounded-lg p-6">
+      <div className="mt-8 bg-emerald-50 rounded-lg p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">
           Rychlé akce
         </h2>

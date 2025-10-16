@@ -197,7 +197,7 @@ export default function CreateInvoicePage() {
                 value={clientId}
                 onChange={(e) => setClientId(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               >
                 <option value="">Vyberte klienta</option>
                 {clients.map((client) => (
@@ -347,13 +347,13 @@ export default function CreateInvoicePage() {
             onChange={(e) => setNote(e.target.value)}
             placeholder="Volitelná poznámka k faktuře..."
             rows={3}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
           />
         </div>
 
         {/* Preview */}
         {preview && (
-          <div className="bg-blue-50 rounded-lg p-6 mb-6">
+          <div className="bg-emerald-50 rounded-lg p-6 mb-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Náhled částek</h2>
             <div className="space-y-2">
               <div className="flex justify-between text-gray-700">

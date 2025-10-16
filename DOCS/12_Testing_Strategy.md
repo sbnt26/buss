@@ -2,7 +2,7 @@
 **Date:** 2025-10-15
 
 ## Overview
-Comprehensive testing strategy for WhatsApp Invoicer MVP covering unit tests, integration tests, E2E tests, and manual testing procedures.
+Comprehensive testing strategy for BussApp MVP covering unit tests, integration tests, E2E tests, and manual testing procedures.
 
 ## Testing Philosophy
 - **Test critical paths** — Focus on invoice creation, WhatsApp flow, PDF generation, payment tracking

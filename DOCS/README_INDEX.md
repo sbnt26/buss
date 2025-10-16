@@ -1,9 +1,9 @@
-# WhatsApp Invoicer — Kompletní technická dokumentace
+# BussApp — Kompletní technická dokumentace
 **Datum:** 2025-10-15
 
 ## Přehled dokumentů
 
-Tato dokumentace poskytuje kompletní specifikaci pro vývoj WhatsApp Invoicer MVP - aplikace pro tvorbu faktur přes WhatsApp s webovým CRM.
+Tato dokumentace poskytuje kompletní specifikaci pro vývoj BussApp MVP - aplikace pro tvorbu faktur přes WhatsApp s webovým CRM.
 
 ---
 

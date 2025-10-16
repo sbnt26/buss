@@ -57,7 +57,7 @@ export default function ClientsPage() {
           </p>
         </div>
         <Link href="/app/clients/create">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">
+          <button className="bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700">
             + Nový klient
           </button>
         </Link>
@@ -70,7 +70,7 @@ export default function ClientsPage() {
           placeholder="Hledat klienta..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
         />
       </div>
 
@@ -133,7 +133,7 @@ export default function ClientsPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
                       href={`/app/clients/${client.id}`}
-                      className="text-blue-600 hover:text-blue-900"
+                      className="text-emerald-600 hover:text-emerald-900"
                     >
                       Detail
                     </Link>

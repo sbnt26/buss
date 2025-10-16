@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'WhatsApp Invoicer',
+  title: 'BussApp',
   description: 'Create invoices via WhatsApp with web CRM',
 };
 
@@ -17,5 +17,4 @@ export default function RootLayout({
     </html>
   );
 }
-
 

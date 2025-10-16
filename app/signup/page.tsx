@@ -55,7 +55,7 @@ export default function SignupPage() {
           <div className="mb-8 text-center">
             <h1 className="text-3xl font-bold mb-2">Registrace</h1>
             <p className="text-muted-foreground">
-              Vytvořte si účet pro WhatsApp Invoicer
+            Vytvořte si účet pro BussApp
             </p>
           </div>
 
@@ -128,4 +128,3 @@ export default function SignupPage() {
     </div>
   );
 }
-

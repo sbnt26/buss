@@ -89,7 +89,7 @@ export default function InvoicesPage() {
 
   const statusColors = {
     draft: 'bg-gray-100 text-gray-800',
-    sent: 'bg-blue-100 text-blue-800',
+    sent: 'bg-emerald-100 text-emerald-800',
     paid: 'bg-green-100 text-green-800',
     overdue: 'bg-red-100 text-red-800',
     cancelled: 'bg-gray-100 text-gray-500',
@@ -167,12 +167,12 @@ export default function InvoicesPage() {
           placeholder="Hledat fakturu..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
         />
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
         >
           <option value="">Všechny stavy</option>
           <option value="draft">Koncept</option>
@@ -261,7 +261,7 @@ export default function InvoicesPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
                       href={`/app/invoices/${invoice.id}`}
-                      className="text-blue-600 hover:text-blue-900 mr-4"
+                      className="text-emerald-600 hover:text-emerald-900 mr-4"
                     >
                       Detail
                     </Link>
@@ -269,7 +269,7 @@ export default function InvoicesPage() {
                       href={`/api/invoices/${invoice.id}/pdf`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-900 mr-4"
+                      className="text-emerald-600 hover:text-emerald-900 mr-4"
                     >
                       PDF
                     </a>
