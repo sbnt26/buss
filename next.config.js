@@ -2,10 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.externals.push({
       'pg-native': 'commonjs pg-native',
     })
+    
+    // Ensure webpack resolves @ alias correctly
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': __dirname,
+    }
+    
     return config
   },
   async headers() {
