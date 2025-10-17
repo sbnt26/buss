@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
+  typescript: {
+    // Don't type check during build - we have our own tsconfig
+    ignoreBuildErrors: false,
+  },
   webpack: (config, { isServer }) => {
     config.externals.push({
       'pg-native': 'commonjs pg-native',
