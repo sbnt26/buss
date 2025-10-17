@@ -7,7 +7,7 @@
     "build": "next build",
     "build:legacy": "npm install && npm run build",
     "build:railway": "echo 'Railway custom build starting...' && npm install --no-package-lock --verbose && echo 'Dependencies installed, building...' && npm run build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint",
     "test": "jest",
     "test:unit": "jest --testPathPattern=tests/unit",
