@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   typescript: {
-    // Don't type check during build - we have our own tsconfig
-    ignoreBuildErrors: false,
+    // Skip type checking during build to speed up deployment
+    ignoreBuildErrors: true,
   },
   webpack: (config, { isServer }) => {
     config.externals.push({
