@@ -14,7 +14,9 @@
     "test:integration": "jest --testPathPattern=tests/integration",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "migrate": "node scripts/run-migrations.js",
+    "create-admin": "node scripts/create-admin.js"
   },
   "engines": {
     "node": ">=20.0.0",
