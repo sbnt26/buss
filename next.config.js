@@ -29,21 +29,20 @@ const nextConfig = {
   },
 }
 
-// Validate required environment variables on build
-const requiredEnvVars = [
+// Environment variables validation (relaxed for deployment)
+// Only warn about missing vars, don't fail the build
+const optionalEnvVars = [
   'DATABASE_URL',
   'SESSION_SECRET',
+  'WHATSAPP_ACCESS_TOKEN',
+  'WHATSAPP_APP_SECRET'
 ]
 
-if (process.env.NODE_ENV === 'production') {
-  requiredEnvVars.push('WHATSAPP_ACCESS_TOKEN', 'WHATSAPP_APP_SECRET', 'GOTENBERG_URL')
-}
-
-const missingVars = requiredEnvVars.filter(varName => !process.env[varName])
+const missingVars = optionalEnvVars.filter(varName => !process.env[varName])
 if (missingVars.length > 0 && process.env.NODE_ENV !== 'test') {
   console.warn(`Warning: Missing environment variables: ${missingVars.join(', ')}`)
+  console.warn('Application will use fallback values')
 }
 
 module.exports = nextConfig
-
 

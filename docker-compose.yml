@@ -22,24 +22,6 @@ services:
       timeout: 5s
       retries: 5
 
-  # Gotenberg (PDF generation)
-  gotenberg:
-    image: gotenberg/gotenberg:7
-    restart: unless-stopped
-    command:
-      - "gotenberg"
-      - "--api-timeout=30s"
-      - "--api-timeout-error-http-status-code=503"
-    ports:
-      - "${GOTENBERG_PORT:-3001}:3000"
-    networks:
-      - invoicer-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
   # Next.js Application (Development)
   app-dev:
     build:
@@ -49,7 +31,6 @@ services:
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://${DATABASE_USER:-invoicer}:${DATABASE_PASSWORD:-change_me_in_prod}@db:5432/${DATABASE_NAME:-invoicer_dev}
-      - GOTENBERG_URL=http://gotenberg:3000
     volumes:
       - .:/app
       - /app/node_modules
@@ -60,8 +41,6 @@ services:
       - invoicer-network
     depends_on:
       db:
-        condition: service_healthy
-      gotenberg:
         condition: service_healthy
     command: npm run dev
     profiles:
@@ -79,7 +58,6 @@ services:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://${DATABASE_USER:-invoicer}:${DATABASE_PASSWORD}@db:5432/${DATABASE_NAME:-invoicer_prod}
       - SESSION_SECRET=${SESSION_SECRET}
-      - GOTENBERG_URL=http://gotenberg:3000
       - WHATSAPP_ACCESS_TOKEN=${WHATSAPP_ACCESS_TOKEN:-}
       - WHATSAPP_APP_SECRET=${WHATSAPP_APP_SECRET:-}
       - WHATSAPP_PHONE_NUMBER_ID=${WHATSAPP_PHONE_NUMBER_ID:-}
@@ -91,8 +69,6 @@ services:
       - invoicer-network
     depends_on:
       db:
-        condition: service_healthy
-      gotenberg:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
@@ -130,6 +106,5 @@ volumes:
   upload-data:
   caddy-data:
   caddy-config:
-
 
 

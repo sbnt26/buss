@@ -51,12 +51,11 @@ Last updated: 2025-10-15
 - ✅ Unit testy pro numbering a calculations (viz `tests/unit`)
 - ✅ Jest konfigurace a setup
 
-## Week 3: PDF Generation & Gotenberg ✅ COMPLETED
+## Week 3: PDF Generation ✅ COMPLETED
 
-### Fáze 3.1: Gotenberg Setup ✅
-- ✅ `lib/gotenberg.ts` - Gotenberg API klient
-- ✅ Retry logika s exponential backoff (2 pokusy)
-- ✅ Health check endpoint
+### Fáze 3.1: Headless Renderer Setup ✅
+- ✅ `lib/pdf-generator.ts` - Puppeteer (Chromium) renderer
+- ✅ Retry-safe init a cleanup Chromu (lazy launch)
 - ✅ Timeout handling (30s)
 
 ### Fáze 3.2: PDF Template (Handlebars) ✅
@@ -138,10 +137,24 @@ Last updated: 2025-10-15
 - ⏳ API endpoint tests
 - ⏳ Authentication flow tests
 
-## Week 4: WhatsApp (Optional) ⏳ DEFERRED
+## Week 4: WhatsApp Channel ✅ COMPLETED
 
-This can be implemented after core deployment is stable.
+### Fáze 4.1: Webhook & Messaging ✅
+- ✅ `GET/POST /api/wa/webhook` — verifikace, HMAC podpis, deduplikace zpráv
+- ✅ FSM konverzace (`idle → awaiting_client → awaiting_items → awaiting_dates → confirm → done`)
+- ✅ Ratelimit 10 zpráv/min podle telefonního čísla
+- ✅ Zpracování `zrušit`, validace formátů, vytváření klientů ad-hoc
 
+### Fáze 4.2: WhatsApp/Messenger odesílání ✅
+- ✅ Posílání odpovědí přes WhatsApp Cloud API (text + PDF upload přes Graph `media` endpoint)
+- ✅ Textová odpověď pro Messenger (Facebook Page)
+- ✅ Odesílání PDF faktur (document message) + fallback při selhání
+- ✅ Aktualizace statusu faktury na `sent`, audit log `created`
+
+### Fáze 4.3: Testy & CI ✅
+- ✅ Unit testy pro HMAC (`verifyMetaSignature`)
+- ✅ Integration testy webhooku (GET challenge, POST s podpisem, multi-tenant scope)
+- ✅ GitHub Actions workflow (`tests.yml`) spouští unit/integration/e2e testy proti Postgresu
 ## Progress Summary
 
 - **Completed:** Week 1 (100%), Week 2 (100%), Week 3 (100%), Week 5 (100%), Week 6 (75%)
@@ -167,7 +180,7 @@ This can be implemented after core deployment is stable.
 - ✅ Comprehensive unit test suite
 
 ### Week 3
-- ✅ Gotenberg PDF generation integration
+- ✅ PDF generation with Puppeteer (headless Chromium)
 - ✅ Professional Czech invoice PDF template
 - ✅ QR payment codes (SPD 1.0 format)
 - ✅ File storage system with streaming
@@ -272,7 +285,7 @@ Remaining:
   - invoice-calculations.ts (VAT, totals, validation)
   - qr-payment.ts (SPD 1.0 QR codes)
   - file-storage.ts (PDF filesystem operations)
-  - gotenberg.ts (PDF generation with retry)
+  - pdf-generator.ts (Puppeteer with retry-safe init)
   - pdf-template.ts (Handlebars rendering)
   - db.ts (connection pooling, transactions)
 

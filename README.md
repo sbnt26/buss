@@ -7,6 +7,7 @@ Komplexní self-hosted fakturační systém s WhatsApp chatbotem a webovým CRM.
 - 📱 Vytváření faktur přes WhatsApp chatbot
 - 💼 Webové CRM pro správu faktur a klientů
 - 📄 Automatické generování PDF faktur s QR platebními kódy
+- 📨 WhatsApp & Messenger chatbot pro zadání faktury krok za krokem
 - 🔒 Self-hosted řešení s minimálními závislostmi
 - 🇨🇿 České faktury s podporou DPH i neplátců DPH
 
@@ -15,7 +16,7 @@ Komplexní self-hosted fakturační systém s WhatsApp chatbotem a webovým CRM.
 - **Frontend:** Next.js 14 (App Router), React 18, Tailwind CSS
 - **Backend:** Next.js API Routes, Node.js 20
 - **Database:** PostgreSQL 16
-- **PDF Generation:** Gotenberg (Chromium-based)
+- **PDF Generation:** Headless Chromium (Puppeteer)
 - **Integration:** WhatsApp Cloud API
 
 ## Quick Start
@@ -24,7 +25,6 @@ Komplexní self-hosted fakturační systém s WhatsApp chatbotem a webovým CRM.
 
 - Node.js 20+
 - PostgreSQL 16
-- Docker (pro Gotenberg)
 
 ### 1. Instalace
 
@@ -61,16 +61,7 @@ docker run -d \
 psql -U postgres -d invoicer_dev -f migrations/001_initial_schema.sql
 ```
 
-### 4. Gotenberg (PDF Service)
-
-```bash
-docker run -d \
-  --name invoicer-gotenberg \
-  -p 3001:3000 \
-  gotenberg/gotenberg:7
-```
-
-### 5. Spuštění
+### 4. Spuštění
 
 ```bash
 npm run dev
@@ -112,6 +103,7 @@ npm run lint         # ESLint
 npm test             # Run all tests
 npm run test:unit    # Unit tests only
 npm run test:integration # Integration tests
+npm run test:e2e     # Playwright smoke tests (requires running dev server)
 ```
 
 ## Dokumentace
@@ -146,6 +138,9 @@ npm run test:integration
 
 # Coverage
 npm run test:coverage
+
+# End-to-end smoke testy (vyžadují běžící dev server)
+npm run test:e2e
 ```
 
 ## Bezpečnost
@@ -182,7 +177,7 @@ Proprietary - Internal use only
 - ✅ 29+ unit tests
 
 **Week 3: PDF Generation**
-- ✅ Gotenberg integrace s retry logicou
+- ✅ Headless PDF generátor (Puppeteer)
 - ✅ Profesionální PDF template (Handlebars)
 - ✅ QR platební kódy (SPD 1.0)
 - ✅ File storage systém

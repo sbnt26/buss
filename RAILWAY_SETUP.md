@@ -61,18 +61,8 @@ railway open
 railway variables set SESSION_SECRET=$(openssl rand -base64 48)
 railway variables set JWT_EXPIRES_IN=7d
 railway variables set NODE_ENV=production
-railway variables set GOTENBERG_URL=http://gotenberg:3000
 railway variables set UPLOAD_DIR=/app/uploads
 ```
-
-### 6. Přidání Gotenberg service (volitelné pro PDF)
-
-V Railway dashboard:
-1. Klikni "New Service" → "Empty Service"
-2. Pojmenuj: "gotenberg"
-3. V Settings → Deploy:
-   - Docker Image: `gotenberg/gotenberg:7`
-   - Port: `3000`
 
 ### 7. Database migrations
 
@@ -89,7 +79,17 @@ railway connect postgres
 \q
 ```
 
-### 8. První deploy
+### 8. Přidej vlastní doménu
+
+1. V Railway dashboardu otevři **Settings → Domains**.
+2. Klikni **Add Custom Domain** a zadej `bussapp.cz`.
+3. Přidej i `www.bussapp.cz` (pokud chceš přesměrování na hlavní doménu).
+4. Railway zobrazí DNS záznamy (CNAME/ALIAS). Zanes je u registrátora a počkej na propagaci.
+5. Jakmile se stav změní na **Verified**, je doména připravena.
+6. Ujisti se, že v sekci Variables máš `NEXT_PUBLIC_APP_URL=https://bussapp.cz`, případně další produkční proměnné (WhatsApp/Messenger, SESSION_SECRET, DATABASE_URL). Změna spustí redeploy.
+7. Po nasazení otestuj dostupnost: `curl -I https://bussapp.cz/api/health` a otevři `https://bussapp.cz` v prohlížeči.
+
+### 9. První deploy
 
 ```bash
 # Railway automaticky detekuje Next.js a nasadí
@@ -105,7 +105,7 @@ git push
 # Settings → Connect GitHub Repository
 ```
 
-### 9. Získání URL aplikace
+### 10. Získání URL aplikace
 
 ```bash
 # Railway ti přidělí doménu
@@ -137,7 +137,6 @@ DATABASE_URL=postgresql://invoicer:invoicer_dev@localhost:5432/invoicer_dev
 SESSION_SECRET=local_dev_secret_32_chars_minimum
 JWT_EXPIRES_IN=7d
 NODE_ENV=development
-GOTENBERG_URL=http://localhost:3001
 ```
 
 Spusť lokální databázi:
@@ -370,6 +369,5 @@ railway link
 ---
 
 **Happy deploying! 🚀**
-
 
 

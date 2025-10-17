@@ -41,12 +41,11 @@ cp .env.example .env.local
 Upravte \`.env.local\` a vyplňte:
 - \`DATABASE_URL\` - connection string
 - \`SESSION_SECRET\` - náhodný secret (min 32 znaků)
-- \`GOTENBERG_URL\` - http://localhost:3001
 
-### 4. Spusťte databázi a Gotenberg
+### 4. Spusťte databázi
 
 \`\`\`bash
-docker compose --profile dev up -d db gotenberg
+docker compose --profile dev up -d db
 \`\`\`
 
 ### 5. Spusťte migrace
@@ -135,8 +134,6 @@ WHATSAPP_ACCESS_TOKEN=<your-access-token>
 WHATSAPP_APP_SECRET=<your-app-secret>
 WHATSAPP_BUSINESS_ACCOUNT_ID=<your-business-account-id>
 
-# Gotenberg
-GOTENBERG_URL=http://gotenberg:3000
 
 # File Storage
 UPLOAD_DIR=./uploads/invoices
@@ -159,13 +156,8 @@ openssl rand -hex 32
 
 ### 4. Nastavení domény v Caddyfile
 
-Upravte \`Caddyfile\` a nahraďte \`yourdomain.com\` vaší doménou:
-
-\`\`\`
-yourdomain.com {
-    # ... zbytek konfigurace
-}
-\`\`\`
+`Caddyfile` je už přizpůsobený pro `bussapp.cz` (včetně přesměrování z `www`).
+Pokud potřebujete staging nebo jinou doménu, naklonujte blok a upravte jej podle potřeby.
 
 ### 5. Nasazení aplikace
 
@@ -200,7 +192,6 @@ curl http://localhost:3000/api/health
 # Logy
 docker compose logs app
 docker compose logs db
-docker compose logs gotenberg
 docker compose logs caddy
 \`\`\`
 
@@ -370,14 +361,13 @@ docker compose exec db psql -U invoicer -d invoicer_prod -c "SELECT 1;"
 
 ### PDF generování nefunguje
 
-\`\`\`bash
-# Zkontrolujte Gotenberg
-curl http://localhost:3001/health
+```bash
+# Restartujte aplikaci (obnoví headless Chromium)
+docker compose restart app
 
-# Restart Gotenberg
-docker compose restart gotenberg
-\`\`\`
-
+# Sledujte logy pro Puppeteer chyby
+docker compose logs app | grep -i puppeteer
+```
 ### Nedostatečná paměť
 
 \`\`\`bash
@@ -399,7 +389,7 @@ sudo swapon /swapfile
 1. Vytvořte Meta Business Account
 2. Přidejte WhatsApp Business App
 3. Získejte credentials (Phone Number ID, Access Token)
-4. Nastavte webhook URL: \`https://yourdomain.com/api/wa/webhook\`
+4. Nastavte webhook URL: \`https://bussapp.cz/api/wa/webhook\`
 5. Ověřte webhook s verify tokenem
 6. Přidejte credentials do \`.env.production\`
 

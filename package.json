@@ -5,17 +5,20 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:legacy": "npm install && npm run build",
+    "build:railway": "echo 'Railway custom build starting...' && npm install --no-package-lock --verbose && echo 'Dependencies installed, building...' && npm run build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:unit": "jest --testPathPattern=tests/unit",
     "test:integration": "jest --testPathPattern=tests/integration",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test"
   },
   "engines": {
     "node": ">=20.0.0",
-    "npm": ">=10.0.0"
+    "npm": ">=8.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
@@ -36,6 +39,7 @@
     "zod": "^3.22.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.0",
     "@testing-library/jest-dom": "^6.4.0",
     "@testing-library/react": "^14.2.0",
     "@types/bcrypt": "^5.0.2",
@@ -56,6 +60,8 @@
     "prettier": "^3.2.0",
     "supertest": "^6.3.0",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.3.0"
+    "typescript": "^5.3.0",
+    "undici": "^7.15.0",
+    "wait-on": "^9.0.1"
   }
 }

@@ -38,7 +38,7 @@
 - Automatic QR payment codes
 - Conditional VAT/non-VAT rendering
 - File streaming for large files
-- Gotenberg integration with retry logic
+- Puppeteer-based PDF pipeline with retry-safe browser lifecycle
 
 ### Infrastructure (85%)
 ✅ **Deployment Setup**
@@ -129,10 +129,10 @@
 - JSON support for flexible data
 - Robust backup/restore
 
-**Gotenberg (PDF)**
-- Chromium-based rendering
-- HTML to PDF conversion
-- Docker-friendly
+**Puppeteer (PDF)**
+- Headless Chromium rendering
+- Direct HTML → PDF conversion
+- Runs alongside Next.js process
 - High-quality output
 
 **Tailwind CSS**
@@ -161,7 +161,7 @@
 - Next.js 14 App Router architecture
 - PostgreSQL transaction handling
 - Docker multi-stage builds
-- PDF generation with Gotenberg
+- PDF generation with Puppeteer
 - Czech invoice requirements (QR payments, VAT)
 - Production deployment with Docker Compose
 - Automated backup strategies
@@ -173,7 +173,7 @@
 2. Configure domain DNS
 3. Create `.env.production`
 4. Run `./scripts/deploy.sh`
-5. Access https://yourdomain.com
+5. Access https://bussapp.cz
 
 ### Future Enhancements:
 1. WhatsApp Bot integration (Week 4)

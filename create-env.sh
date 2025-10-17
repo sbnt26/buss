@@ -9,7 +9,6 @@ DATABASE_URL=$DATABASE_URL
 SESSION_SECRET=$(openssl rand -base64 48)
 JWT_EXPIRES_IN=7d
 NODE_ENV=development
-GOTENBERG_URL=http://localhost:3001
 UPLOAD_DIR=./uploads/invoices
 EOL
 echo "✅ .env.local vytvořen!"

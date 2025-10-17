@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+RUN npm install --no-package-lock
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -45,7 +45,7 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
+# For standalone build, use node server.js
 CMD ["node", "server.js"]
-
 
 

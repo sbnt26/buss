@@ -1,12 +1,12 @@
 # Caddyfile for production deployment
-# Replace yourdomain.com with your actual domain
+# Configured for bussapp.cz
 
 {
     # Global options
-    email admin@yourdomain.com
+    email admin@bussapp.cz
 }
 
-yourdomain.com {
+bussapp.cz {
     # Enable automatic HTTPS
     encode gzip zstd
 
@@ -51,9 +51,8 @@ yourdomain.com {
 }
 
 # Redirect www to non-www
-www.yourdomain.com {
-    redir https://yourdomain.com{uri} permanent
+www.bussapp.cz {
+    redir https://bussapp.cz{uri} permanent
 }
-
 
 
