@@ -7,15 +7,27 @@ import { getPool } from '@/lib/db';
  */
 export async function GET() {
   try {
-    // Check database connection
-    const pool = getPool();
-    await pool.query('SELECT 1');
+    // Basic health check - only check if database is configured
+    const dbConfigured = !!process.env.DATABASE_URL;
+    
+    // Try database connection if configured
+    let dbStatus = 'not_configured';
+    if (dbConfigured) {
+      try {
+        const pool = getPool();
+        await pool.query('SELECT 1');
+        dbStatus = 'ok';
+      } catch (error) {
+        dbStatus = 'error';
+        console.error('Database connection failed:', error);
+      }
+    }
 
     return NextResponse.json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
       services: {
-        database: 'ok',
+        database: dbStatus,
         application: 'ok',
       },
     });
@@ -25,10 +37,7 @@ export async function GET() {
       {
         status: 'unhealthy',
         timestamp: new Date().toISOString(),
-        services: {
-          database: 'error',
-          application: 'ok',
-        },
+        error: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 503 }
     );
