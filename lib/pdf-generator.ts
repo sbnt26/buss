@@ -4,11 +4,26 @@ let browserPromise: Promise<Browser> | null = null;
 
 async function getBrowser(): Promise<Browser> {
   if (!browserPromise) {
+    const launchOptions: Parameters<typeof puppeteer.launch>[0] = {
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--disable-gpu',
+      ],
+    };
+
+    // Use system Chromium if available (e.g., in Docker)
+    if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+      launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    }
+
     browserPromise = puppeteer
-      .launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      })
+      .launch(launchOptions)
       .catch((error) => {
         browserPromise = null;
         throw error;

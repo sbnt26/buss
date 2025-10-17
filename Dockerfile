@@ -4,15 +4,24 @@ FROM node:20-alpine AS base
 # Install dependencies only when needed
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
 
 # Copy package files
-COPY package.json package-lock.json* ./
-RUN npm install --no-package-lock
+COPY package.json package-lock.json ./
+
+# Tell Puppeteer to skip installing Chrome during npm install
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+
+RUN npm ci
 
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+# Tell Puppeteer to skip Chrome during build
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -22,6 +31,19 @@ RUN npm run build
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
+
+# Install Chromium and dependencies for runtime
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+# Tell Puppeteer to use system Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
